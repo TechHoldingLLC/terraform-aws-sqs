@@ -31,3 +31,8 @@ variable "dlq_redrive_policy_max_receive_count" {
   description = "DLQ redrive policy max receive count"
   default     = 5
 }
+
+variable "batch_size" {
+  description = "The largest number of records that Lambda will retrieve from event source at the time of invocation"
+  default     = 10
+}

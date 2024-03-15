@@ -27,6 +27,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_batch_size"></a> [batch\_size](#input\_batch\_size) | The largest number of records that Lambda will retrieve from event source at the time of invocation | `number` | `10` | no |
 | <a name="input_content_based_deduplication"></a> [content\_based\_deduplication](#input\_content\_based\_deduplication) | Content based deduplication | `bool` | `false` | no |
 | <a name="input_dlq"></a> [dlq](#input\_dlq) | Enable DLQ | `bool` | `false` | no |
 | <a name="input_dlq_redrive_policy_max_receive_count"></a> [dlq\_redrive\_policy\_max\_receive\_count](#input\_dlq\_redrive\_policy\_max\_receive\_count) | DLQ redrive policy max receive count | `number` | `5` | no |
@@ -44,3 +45,7 @@ No modules.
 | <a name="output_id"></a> [id](#output\_id) | n/a |
 | <a name="output_name"></a> [name](#output\_name) | n/a |
 | <a name="output_url"></a> [url](#output\_url) | n/a |
+
+## License
+
+Apache 2 Licensed. See [LICENSE](https://github.com/TechHoldingLLC/terraform-aws-sqs/blob/main/LICENSE) for full details.

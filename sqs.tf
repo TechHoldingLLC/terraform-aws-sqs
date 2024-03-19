@@ -1,14 +1,12 @@
 resource "aws_sqs_queue" "sqs_dlq" {
   count             = var.dlq ? 1 : 0
   name              = var.fifo_queue ? "${var.name}-dlq.fifo" : "${var.name}-dlq"
-  kms_master_key_id = "alias/aws/sqs"
   fifo_queue        = var.fifo_queue
 }
 
 resource "aws_sqs_queue" "sqs" {
   name                        = var.fifo_queue ? "${var.name}.fifo" : var.name
   visibility_timeout_seconds  = var.visibility_timeout_seconds
-  kms_master_key_id           = "alias/aws/sqs"
   fifo_queue                  = var.fifo_queue
   content_based_deduplication = var.content_based_deduplication
   redrive_policy = var.dlq ? jsonencode(

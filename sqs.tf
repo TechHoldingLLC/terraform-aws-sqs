@@ -1,7 +1,12 @@
 resource "aws_sqs_queue" "sqs_dlq" {
-  count      = var.dlq ? 1 : 0
-  name       = var.fifo_queue ? "${var.name}-dlq.fifo" : "${var.name}-dlq"
-  fifo_queue = var.fifo_queue
+  count                      = var.dlq ? 1 : 0
+  name                       = var.fifo_queue ? "${var.name}-dlq.fifo" : "${var.name}-dlq"
+  fifo_queue                 = var.fifo_queue
+  delay_seconds              = var.delay_seconds
+  message_retention_seconds  = var.dlq_message_retention_seconds
+  receive_wait_time_seconds  = var.receive_wait_time_seconds
+  visibility_timeout_seconds = var.dlq_visibility_timeout_seconds
+  sqs_managed_sse_enabled    = var.sqs_managed_sse_enabled
 
   tags = var.tags
 }
@@ -11,6 +16,11 @@ resource "aws_sqs_queue" "sqs" {
   visibility_timeout_seconds  = var.visibility_timeout_seconds
   fifo_queue                  = var.fifo_queue
   content_based_deduplication = var.content_based_deduplication
+  delay_seconds               = var.delay_seconds
+  message_retention_seconds   = var.message_retention_seconds
+  receive_wait_time_seconds   = var.receive_wait_time_seconds
+  sqs_managed_sse_enabled     = var.sqs_managed_sse_enabled
+
   redrive_policy = var.dlq ? jsonencode(
     {
       deadLetterTargetArn = aws_sqs_queue.sqs_dlq[0].arn

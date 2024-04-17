@@ -3,6 +3,41 @@ variable "tags" {
   default     = {}
 }
 
+variable "sqs_managed_sse_enabled" {
+  description = "Server side encryption"
+  default     = true
+}
+
+variable "delay_seconds" {
+  description = "The duration for which the message will be delayed before it can be consumed after being added to the queue"
+  type        = number
+  default     = 0
+}
+
+variable "message_retention_seconds" {
+  description = "The duration for which a message will be retained in the queue"
+  type        = number
+  default     = 86400
+}
+
+variable "receive_wait_time_seconds" {
+  description = "The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning"
+  type        = number
+  default     = 0
+}
+
+variable "dlq_message_retention_seconds" {
+  description = "The duration for which a message won't be available for another consumer (So if a message processing fails, this is a time it will take for it to be consumed again)"
+  type        = number
+  default     = 1209600
+}
+
+variable "dlq_visibility_timeout_seconds" {
+  description = "The duration for which a message will be retained in the queue"
+  type        = number
+  default     = 30
+}
+
 variable "content_based_deduplication" {
   description = "Content based deduplication"
   default     = false

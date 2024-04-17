@@ -1,3 +1,13 @@
+variable "application_tag" {
+  description = "Tag"
+  default     = ""
+}
+
+variable "env_tag" {
+  description = "Tag"
+  default     = ""
+}
+
 variable "content_based_deduplication" {
   description = "Content based deduplication"
   default     = false

@@ -1,7 +1,12 @@
 resource "aws_sqs_queue" "sqs_dlq" {
-  count             = var.dlq ? 1 : 0
-  name              = var.fifo_queue ? "${var.name}-dlq.fifo" : "${var.name}-dlq"
-  fifo_queue        = var.fifo_queue
+  count      = var.dlq ? 1 : 0
+  name       = var.fifo_queue ? "${var.name}-dlq.fifo" : "${var.name}-dlq"
+  fifo_queue = var.fifo_queue
+
+  tags = {
+    Application = var.application_tag
+    Environment = var.env_tag
+  }
 }
 
 resource "aws_sqs_queue" "sqs" {
@@ -15,6 +20,11 @@ resource "aws_sqs_queue" "sqs" {
       maxReceiveCount     = var.dlq_redrive_policy_max_receive_count
     }
   ) : null
+
+  tags = {
+    Application = var.application_tag
+    Environment = var.env_tag
+  }
 }
 
 resource "aws_lambda_event_source_mapping" "sqs_lambda" {

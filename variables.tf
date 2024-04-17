@@ -1,3 +1,8 @@
+variable "tags" {
+  description = "Tag"
+  default     = {}
+}
+
 variable "content_based_deduplication" {
   description = "Content based deduplication"
   default     = false

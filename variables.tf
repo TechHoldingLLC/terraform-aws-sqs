@@ -1,11 +1,6 @@
-variable "application_tag" {
+variable "tags" {
   description = "Tag"
-  default     = ""
-}
-
-variable "env_tag" {
-  description = "Tag"
-  default     = ""
+  default     = {}
 }
 
 variable "content_based_deduplication" {

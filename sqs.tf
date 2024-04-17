@@ -3,10 +3,7 @@ resource "aws_sqs_queue" "sqs_dlq" {
   name       = var.fifo_queue ? "${var.name}-dlq.fifo" : "${var.name}-dlq"
   fifo_queue = var.fifo_queue
 
-  tags = {
-    Application = var.application_tag
-    Environment = var.env_tag
-  }
+  tags = var.tags
 }
 
 resource "aws_sqs_queue" "sqs" {
@@ -21,10 +18,7 @@ resource "aws_sqs_queue" "sqs" {
     }
   ) : null
 
-  tags = {
-    Application = var.application_tag
-    Environment = var.env_tag
-  }
+  tags = var.tags
 }
 
 resource "aws_lambda_event_source_mapping" "sqs_lambda" {

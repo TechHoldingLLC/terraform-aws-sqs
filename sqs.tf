@@ -6,6 +6,7 @@ resource "aws_sqs_queue" "sqs_dlq" {
   message_retention_seconds  = var.dlq_message_retention_seconds
   receive_wait_time_seconds  = var.receive_wait_time_seconds
   visibility_timeout_seconds = var.dlq_visibility_timeout_seconds
+  sqs_managed_sse_enabled    = var.sqs_managed_sse_enabled
 
   tags = var.tags
 }

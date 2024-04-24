@@ -36,4 +36,8 @@ resource "aws_lambda_event_source_mapping" "sqs_lambda" {
   event_source_arn = aws_sqs_queue.sqs.arn
   function_name    = var.trigger_lambda_function_arn
   batch_size       = var.batch_size
+
+  scaling_config {
+    maximum_concurrency = var.maximum_concurrency
+  }
 }

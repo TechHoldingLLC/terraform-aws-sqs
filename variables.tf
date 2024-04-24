@@ -76,3 +76,8 @@ variable "batch_size" {
   description = "The largest number of records that Lambda will retrieve from event source at the time of invocation"
   default     = 10
 }
+
+variable "maximum_concurrency" {
+  description = "Limits the number of concurrent instances that the Amazon SQS event source can invoke"
+  default = 10
+}

@@ -32,9 +32,9 @@ resource "aws_sqs_queue" "sqs" {
 }
 
 resource "aws_lambda_event_source_mapping" "sqs_lambda" {
-  count            = var.trigger_lambda_function_arn != "" ? 1 : 0
+  count            = var.trigger_lambda_function ? 1 : 0
   event_source_arn = aws_sqs_queue.sqs.arn
-  function_name    = var.trigger_lambda_function_arn
+  function_name    = var.lambda_function_arn
   batch_size       = var.batch_size
 
   scaling_config {

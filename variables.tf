@@ -52,9 +52,9 @@ variable "name" {
   description = "Name of SNS and SQS"
 }
 
-variable "trigger_lambda_function_arn" {
+variable "trigger_lambda_function" {
   description = "Lambda function arn that trigger from SQS"
-  default     = ""
+  default     = false
 }
 
 variable "visibility_timeout_seconds" {
@@ -79,5 +79,11 @@ variable "batch_size" {
 
 variable "maximum_concurrency" {
   description = "Limits the number of concurrent instances that the Amazon SQS event source can invoke"
-  default = 10
+  default     = 10
+}
+
+variable "lambda_function_arn" {
+  description = "Lambda function arn"
+  type        = string
+  default     = ""
 }

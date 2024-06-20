@@ -91,5 +91,5 @@ variable "lambda_function_arn" {
 variable "deduplication_scope" {
   description = "Specifies whether message deduplication occurs at the message group or queue level"
   type        = string
-  default     = ""
+  default     = "queue"
 }

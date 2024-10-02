@@ -40,6 +40,7 @@ variable "dlq_visibility_timeout_seconds" {
 
 variable "content_based_deduplication" {
   description = "Content based deduplication"
+  type        = bool
   default     = false
 }
 
@@ -91,5 +92,5 @@ variable "lambda_function_arn" {
 variable "deduplication_scope" {
   description = "Specifies whether message deduplication occurs at the message group or queue level"
   type        = string
-  default     = "queue"
+  default     = null
 }
